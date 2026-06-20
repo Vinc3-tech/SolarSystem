@@ -1,0 +1,18 @@
+/* *-- palette di colori --*/
+
+:root{
+
+    --primary-background : #050816;
+    --secondary-background : #0B1026;
+
+    --text : #F8FAFC;
+    --secondary-text : #94A3B8;
+
+    --blu-accent: #38BDF8;
+    --purple-accent: #A855F7;
+    
+    --evidention: #FACC15;
+
+    --star: #F8FAFC;
+    
+}
