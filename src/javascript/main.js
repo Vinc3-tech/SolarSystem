@@ -77,6 +77,7 @@ function CheckSelection() {
             //nome del pianeta
             if (infoPianeti[chiave].nome) {
                 let contNomePianeta = document.createElement("div");
+                contNomePianeta.style.margin = "5px 0";
 
                 let label = document.createElement("span");
                 label.classList.add("labelCaratteristiche","pixel-font");
@@ -94,6 +95,7 @@ function CheckSelection() {
             //diametro
             if (infoPianeti[chiave].diametroKm) {
                 let contDiametroPianeta = document.createElement("div");
+                contDiametroPianeta.style.margin = "5px 0";
 
                 let label = document.createElement("span");
                 label.classList.add("labelCaratteristiche","pixel-font");
@@ -109,7 +111,7 @@ function CheckSelection() {
             //distanza dal sole
             if (infoPianeti[chiave].distanzaDalSoleKm) {
                 let contDistanzaPianetaSole = document.createElement("div");
-                contDistanzaPianetaSole.classList.add("caratteristichePianeta");
+                contDistanzaPianetaSole.style.margin = "5px 0";
 
                 let label = document.createElement("span");
                 label.classList.add("labelCaratteristiche","pixel-font");
@@ -125,6 +127,7 @@ function CheckSelection() {
             //tempo di orbita attorno al sole
             if (infoPianeti[chiave].periodoOrbitaleGiorni) {
                 let contOrbitaPianeta = document.createElement("div");
+                contOrbitaPianeta.style.margin = "5px 0";
 
                 let label = document.createElement("span");
                 label.classList.add("labelCaratteristiche","pixel-font");
@@ -140,6 +143,7 @@ function CheckSelection() {
             //composizione del pianeta
             if (infoPianeti[chiave].composizione) {
                 let contComposizionePianeta = document.createElement("div");
+                contComposizionePianeta.style.margin = "5px 0";
 
                 let label = document.createElement("span");
                 label.classList.add("labelCaratteristiche","pixel-font");
@@ -151,6 +155,42 @@ function CheckSelection() {
 
                 contComposizionePianeta.appendChild(label).appendChild(composizione);
                 divLabelPianeta.appendChild(contComposizionePianeta);
+            };
+            //descrizione del pianeta
+            if (infoPianeti[chiave].descrizione) {
+                let contDescrizionePianeta = document.createElement("div");
+                contDescrizionePianeta.style.margin = "5px 0";
+
+                let label = document.createElement("span");
+                label.classList.add("labelCaratteristiche","pixel-font");
+                label.textContent = `Descrizione: `;
+
+                let descrizionePianeta = document.createElement("span");
+                descrizionePianeta.classList.add("textLabel","primary-font");
+                descrizionePianeta.style.display = "block";
+                descrizionePianeta.textContent = infoPianeti[chiave].descrizione;
+
+                contDescrizionePianeta.appendChild(label);
+                contDescrizionePianeta.appendChild(descrizionePianeta);
+                divLabelPianeta.appendChild(contDescrizionePianeta);
+            };
+            //curiosità del pianeta
+            if (infoPianeti[chiave].curiosita) {
+                let contCuriositaPianeta = document.createElement("div");
+                contCuriositaPianeta.style.margin = "5px 0";
+
+                let label = document.createElement("span");
+                label.classList.add("labelCaratteristiche","pixel-font");
+                label.textContent = `Curiosità: `;
+
+                let nomePianeta = document.createElement("span");
+                nomePianeta.classList.add("textLabel","primary-font");
+                nomePianeta.style.display = "block";
+                nomePianeta.textContent = infoPianeti[chiave].curiosita;
+
+                contCuriositaPianeta.appendChild(label);
+                contCuriositaPianeta.appendChild(nomePianeta);
+                divLabelPianeta.appendChild(contCuriositaPianeta);
             };
 
             document.getElementById("contSolarSystem").appendChild(divLabelPianeta);

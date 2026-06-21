@@ -17,9 +17,11 @@ body{
 #title h1{
     font-size: 3rem;
     margin-bottom: 0;
+    color: var(--evidention);
 }
 #title span{
     font-weight: 200;
+    color: var(--blu-accent);
 }
 
 #contSolarSystem{
@@ -60,6 +62,7 @@ body{
     background-color: var(--secondary-background);
     display: flex;
     flex-direction: column;
+    z-index: 11;
 }
 .labelCaratteristiche{
     font-size: 1.5rem;
