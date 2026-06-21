@@ -157,7 +157,7 @@ function CheckSelection() {
                 divLabelPianeta.appendChild(contComposizionePianeta);
             };
             //descrizione del pianeta
-            if (infoPianeti[chiave].descrizione) {
+            if (infoPianeti[chiave].descrizione && document.innerWidth > 768) {
                 let contDescrizionePianeta = document.createElement("div");
                 contDescrizionePianeta.style.margin = "5px 0";
 
@@ -175,7 +175,7 @@ function CheckSelection() {
                 divLabelPianeta.appendChild(contDescrizionePianeta);
             };
             //curiosità del pianeta
-            if (infoPianeti[chiave].curiosita) {
+            if (infoPianeti[chiave].curiosita && document.innerWidth > 768) {
                 let contCuriositaPianeta = document.createElement("div");
                 contCuriositaPianeta.style.margin = "5px 0";
 

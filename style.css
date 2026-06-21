@@ -16,7 +16,7 @@ body{
     z-index: 10;
 }
 #title h1{
-    font-size: clamp(1.5rem, 3rem, 5vw);
+    font-size: clamp(2rem, 3rem, 5vw);
     margin-bottom: 0;
     color: var(--evidention);
 }
@@ -156,7 +156,10 @@ body{
         display: none;
     }
     .labelPianeta{
-        display: none;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 65%;
     }
 
 }
