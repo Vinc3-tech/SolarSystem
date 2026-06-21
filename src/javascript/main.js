@@ -74,33 +74,33 @@ function CheckSelection() {
             const divLabelPianeta = document.createElement("div");
             divLabelPianeta.classList.add("labelPianeta");
 
-            let nomePianeta, diametroPianeta, distanzaDalSole, periodoOrbita, composizionePianeta;
-
             //nome del pianeta
             if (infoPianeti[chiave].nome) {
                 let contNomePianeta = document.createElement("div");
-                contNomePianeta.classList.add("caratteristichePianeta");
 
                 let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche");
+                label.classList.add("labelCaratteristiche","pixel-font");
                 label.textContent = `Pianeta selezionato: `;
 
                 let nomePianeta = document.createElement("span");
+                nomePianeta.classList.add("textLabel","labelNomePianeta","primary-font");
+                nomePianeta.style.display = "block";
                 nomePianeta.textContent = infoPianeti[chiave].nome;
 
-                contNomePianeta.appendChild(label).appendChild(nomePianeta);
+                contNomePianeta.appendChild(label);
+                contNomePianeta.appendChild(nomePianeta);
                 divLabelPianeta.appendChild(contNomePianeta);
             };
             //diametro
             if (infoPianeti[chiave].diametroKm) {
                 let contDiametroPianeta = document.createElement("div");
-                contDiametroPianeta.classList.add("caratteristichePianeta");
 
                 let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche");
+                label.classList.add("labelCaratteristiche","pixel-font");
                 label.textContent = `Diametro: `;
 
                 let diametroPianeta = document.createElement("span");
+                diametroPianeta.classList.add("textLabel","primary-font");
                 diametroPianeta.textContent = infoPianeti[chiave].diametroKm +'Km';
 
                 contDiametroPianeta.appendChild(label).appendChild(diametroPianeta);
@@ -112,10 +112,11 @@ function CheckSelection() {
                 contDistanzaPianetaSole.classList.add("caratteristichePianeta");
 
                 let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche");
+                label.classList.add("labelCaratteristiche","pixel-font");
                 label.textContent = `Distanza dal sole: `;
 
                 let distanzaPianetaSole = document.createElement("span");
+                distanzaPianetaSole.classList.add("textLabel","primary-font");
                 distanzaPianetaSole.textContent = infoPianeti[chiave].distanzaDalSoleKm + 'Km';
 
                 contDistanzaPianetaSole.appendChild(label).appendChild(distanzaPianetaSole);
@@ -124,13 +125,13 @@ function CheckSelection() {
             //tempo di orbita attorno al sole
             if (infoPianeti[chiave].periodoOrbitaleGiorni) {
                 let contOrbitaPianeta = document.createElement("div");
-                contOrbitaPianeta.classList.add("caratteristichePianeta");
 
                 let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche");
+                label.classList.add("labelCaratteristiche","pixel-font");
                 label.textContent = `Tempo di orbita attorno al Sole: `;
 
                 let tempoOrbita = document.createElement("span");
+                tempoOrbita.classList.add("textLabel","primary-font");
                 tempoOrbita.textContent = `${infoPianeti[chiave].periodoOrbitaleGiorni} giorni`;
 
                 contOrbitaPianeta.appendChild(label).appendChild(tempoOrbita);
@@ -139,13 +140,13 @@ function CheckSelection() {
             //composizione del pianeta
             if (infoPianeti[chiave].composizione) {
                 let contComposizionePianeta = document.createElement("div");
-                contComposizionePianeta.classList.add("caratteristichePianeta");
 
                 let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche");
+                label.classList.add("labelCaratteristiche","pixel-font");
                 label.textContent = `Pianeta selezionato: `;
 
                 let composizione = document.createElement("span");
+                composizione.classList.add("textLabel","primary-font");
                 composizione.textContent = infoPianeti[chiave].composizione;
 
                 contComposizionePianeta.appendChild(label).appendChild(composizione);

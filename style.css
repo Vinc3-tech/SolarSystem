@@ -58,6 +58,18 @@ body{
     padding: 30px;
     margin: 5rem;
     background-color: var(--secondary-background);
+    display: flex;
+    flex-direction: column;
+}
+.labelCaratteristiche{
+    font-size: 1.5rem;
+    color: var(--secondary-text);
+}
+.labelNomePianeta{
+    font-size: 6rem;
+}
+.textLabel{
+    color: var(--text);
 }
 .transparent-gradient {
     display: block;
