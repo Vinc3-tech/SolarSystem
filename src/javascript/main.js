@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     pianeti.forEach(pianeta => {
         // div per il gradiente sfumato
-        const divGradient = document.createElement("div");
+        /*const divGradient = document.createElement("div");
         divGradient.classList.add("transparent-gradient");
-        pianeta.appendChild(divGradient);
+        pianeta.appendChild(divGradient);*/
     });
 
     //aggiunta delle classi

@@ -24,6 +24,13 @@ body{
     color: var(--blu-accent);
 }
 
+#contNebulose{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 #contSolarSystem{
     width: 100%;
     height: 100%;
@@ -52,13 +59,14 @@ body{
 }
 .labelPianeta{
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
-    width: 25%;
+    transform: translate(0, -50%);
+    width: 30%;
     border: 1px solid var(--star);
     border-radius: 5px;
     padding: 30px;
-    margin: 5rem;
+    margin: 0 5rem 0 0;
     background-color: var(--secondary-background);
     display: flex;
     flex-direction: column;

@@ -42,7 +42,7 @@ const pianetiInfo = {
         periodoOrbitaleGiorni: 687,
         composizione: "roccioso",
         src: "src/img/img-sistemaSolare/mars.png",
-        descrizione: "Mars è il quarto pianeta del sistema solare in ordine di distanza dal Sole e il settimo per dimensioni. Conosciuto come il “Pianeta Rosso” per il colore ferruginoso della sua superficie, è l’unico pianeta abitato esclusivamente da robot e rappresenta oggi uno dei principali obiettivi dell’esplorazione spaziale umana.",
+        descrizione: "Marte è il quarto pianeta del sistema solare in ordine di distanza dal Sole e il settimo per dimensioni. Conosciuto come il “Pianeta Rosso” per il colore ferruginoso della sua superficie, è l’unico pianeta abitato esclusivamente da robot e rappresenta oggi uno dei principali obiettivi dell’esplorazione spaziale umana.",
         curiosita: "Marte è considerato il pianeta più simile alla Terra. Studiare la sua evoluzione, dal passato più caldo e umido all’attuale deserto gelido, aiuta a comprendere la storia climatica dei pianeti rocciosi. Per molte agenzie spaziali, rappresenta la prossima grande tappa dell’esplorazione umana del sistema solare."
     },
     giove: {
@@ -52,7 +52,7 @@ const pianetiInfo = {
         periodoOrbitaleGiorni: 4333,
         composizione: "gassoso",
         src: "src/img/img-sistemaSolare/jupiter.png",
-        descrizione: "Jupiter è il quinto pianeta dal Sole e il più grande del Sistema Solare. Si tratta di un gigante gassoso composto principalmente da idrogeno ed elio, noto per le sue bande nuvolose colorate e la caratteristica Grande Macchia Rossa, una gigantesca tempesta che imperversa da secoli.",
+        descrizione: "Giove è il quinto pianeta dal Sole e il più grande del Sistema Solare. Si tratta di un gigante gassoso composto principalmente da idrogeno ed elio, noto per le sue bande nuvolose colorate e la caratteristica Grande Macchia Rossa, una gigantesca tempesta che imperversa da secoli.",
         curiosita: "Il sistema gioviano comprende più di 90 lune, tra cui le quattro scoperte da Galileo Galilei nel 1610: Io, Europa, Ganimede e Callisto. Possiede anche un tenue sistema di anelli, composto principalmente da particelle di polvere generate dagli impatti sui suoi satelliti interni."
     },
     saturno: {
@@ -72,7 +72,7 @@ const pianetiInfo = {
         periodoOrbitaleGiorni: 30687,
         composizione: "gassoso",
         src: "src/img/img-sistemaSolare/uranus.png",
-        descrizione: "Uranus è il settimo pianeta dal Sole e il terzo per diametro nel Sistema Solare. È classificato come gigante di ghiaccio per la sua composizione dominata da acqua, ammoniaca e metano in forma fluida. Scoperto nel 1781 da William Herschel, fu il primo pianeta individuato con l’aiuto di un telescopio, ampliando per la prima volta i confini noti del sistema planetario.",
+        descrizione: "Urano è il settimo pianeta dal Sole e il terzo per diametro nel Sistema Solare. È classificato come gigante di ghiaccio per la sua composizione dominata da acqua, ammoniaca e metano in forma fluida. Scoperto nel 1781 da William Herschel, fu il primo pianeta individuato con l’aiuto di un telescopio, ampliando per la prima volta i confini noti del sistema planetario.",
         curiosita: "Uranus ruota su un asse inclinato di circa 98°, quasi parallelo al piano orbitale. Di conseguenza, “gira su un fianco” e alterna periodi polari di luce e oscurità che durano 21 anni terrestri. Questa peculiare inclinazione, probabilmente dovuta a un antico impatto con un corpo delle dimensioni della Terra, genera le stagioni più estreme del Sistema Solare. Inoltre il pianeta possiede un sistema di 13 anelli stretti, formati da particelle scure e sottili, probabilmente residui di antichi satelliti distrutti. Le 28 lune note includono cinque principali — Miranda, Ariel, Umbriel, Titania e Oberon — i cui nomi derivano da opere di William Shakespeare e Alexander Pope."
     },
     nettuno: {
@@ -82,7 +82,7 @@ const pianetiInfo = {
         periodoOrbitaleGiorni: 60190,
         composizione: "gassoso",
         src: "src/img/img-sistemaSolare/neptune.png",
-        descrizione: "Neptune è l’ottavo e più distante pianeta del Sistema Solare. È un “gigante di ghiaccio”, formato principalmente da idrogeno, elio e composti ghiacciati come acqua, ammoniaca e metano. La sua intensa colorazione blu e i venti supersonici lo rendono uno dei mondi più dinamici e affascinanti dell’intero sistema planetario.",
+        descrizione: "Nettuno è l’ottavo e più distante pianeta del Sistema Solare. È un “gigante di ghiaccio”, formato principalmente da idrogeno, elio e composti ghiacciati come acqua, ammoniaca e metano. La sua intensa colorazione blu e i venti supersonici lo rendono uno dei mondi più dinamici e affascinanti dell’intero sistema planetario.",
         curiosita: "Cinque deboli anelli, parzialmente interrotti in archi, circondano il pianeta. Le 14 lune conosciute includono Tritone, la più grande, che orbita in direzione opposta alla rotazione di Neptune, suggerendo una cattura gravitazionale. Su Tritone sono stati osservati geyser di azoto e possibili segni di oceani sotterranei."
     }
 };
