@@ -1,9 +1,10 @@
 html, body{
+    width: 100%;
     height: 100%;
+    margin: 0;
 }
 
 body{
-    margin: 0;
     background-color: var(--primary-background);
     color: var(--text);
 }
@@ -15,7 +16,7 @@ body{
     z-index: 10;
 }
 #title h1{
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 3rem, 5vw);
     margin-bottom: 0;
     color: var(--evidention);
 }
@@ -42,8 +43,8 @@ body{
     overflow: hidden;
 }
 .planet{
-    width: 500px;
-    height: 500px;
+    width: clamp(250px, 500px, 80vw);
+    height: clamp(250px, 500px, 80vh);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -73,11 +74,11 @@ body{
     z-index: 11;
 }
 .labelCaratteristiche{
-    font-size: 1.5rem;
+    font-size: clamp(0.9rem, 1.5rem, 3vw);
     color: var(--secondary-text);
 }
 .labelNomePianeta{
-    font-size: 6rem;
+    font-size: clamp(2rem, 6rem, 10vw);
 }
 .textLabel{
     color: var(--text);
@@ -94,7 +95,7 @@ body{
 #navMenu {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: clamp(150px, 20%, 300px);
     position: absolute;
     top: 50%;
     left: 0;
@@ -126,4 +127,36 @@ body{
 }
 .contVoce:hover .miniPlanet{
     transform: translateX(5px) scale(1.2);
+}
+
+/* -- Telefono -- */
+@media (max-width: 768px) {
+
+    #navMenu{
+        flex-direction: row;
+        top: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin: 10px 0;
+        overflow: scroll;
+        width: 90%;
+        background-color: var(--secondary-background);
+        border-radius: 10px;
+    }
+    .miniPlanet{
+        margin: 0;
+        width: 35px;
+        filter: drop-shadow(0 0 10px var(--primary-background));
+    }
+    .contVoce:hover .miniPlanet{
+        transform: scale(1.2);
+    }
+    .voce{
+        display: none;
+    }
+    .labelPianeta{
+        display: none;
+    }
+
 }
