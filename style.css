@@ -74,11 +74,11 @@ body{
     z-index: 11;
 }
 .labelCaratteristiche{
-    font-size: clamp(0.9rem, 1.5rem, 3vw);
+    font-size: clamp(1rem, 1.5rem, 3vw);
     color: var(--secondary-text);
 }
 .labelNomePianeta{
-    font-size: clamp(2rem, 6rem, 10vw);
+    font-size: clamp(4rem, 6rem, 10vw);
     display: block;
 }
 .textLabel{
@@ -130,6 +130,23 @@ body{
     transform: translateX(5px) scale(1.2);
 }
 
+.btnDiscoverMore{
+    padding: 20px 30px;
+    width: 50%;
+    margin: 20px 20px 20px 0;
+    border: none;
+    background-color: var(--primary-background);
+    color: var(--evidention);
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all .3s;
+}
+.btnDiscoverMore:hover {
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--evidention);
+    transform: translateY(-5px);
+}
+
 /* -- Telefono -- */
 @media (max-width: 768px) {
 
@@ -157,10 +174,15 @@ body{
         display: none;
     }
     .labelPianeta{
-        top: 40%;
+        top: 45%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 65%;
+        text-align: center;
+        margin: auto;
+    }
+    .btnDiscoverMore{
+        width: 100%;
     }
 
 }

@@ -35,7 +35,7 @@ const card = {
     distanza: {},
     composizione: {},
     descrizione: {},
-    curiosita: {}
+    curiosita: {},
 };
 
 // * -- STILE DEI PIANETI AL CARICAMENTO DELLA PAGINA --
@@ -79,6 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
     card.composizione.label.textContent = `Composizione: `;
     card.descrizione.label.textContent = `Descrizione: `;
     card.curiosita.label.textContent = `Curiosità: `;
+
+    //bottone per collegarsi alle altre pagine
+    card.link = document.createElement("button");
+    card.link.textContent = "Scopri di più";
+    card.link.classList.add("btnDiscoverMore","primary-font");
+    contLabelPianeta.appendChild(card.link);
 
     const contSolarSystem = document.getElementById("contSolarSystem");
     if (contSolarSystem) {
@@ -168,6 +174,9 @@ function updatePlanetDescription() {
             }
             else{
                 card.curiosita.value.textContent = '';
+            }
+            card.link.onclick = () => {
+                window.location.href = infoPianeti[pianeta].linkPageHTML;
             }
         }
     });
