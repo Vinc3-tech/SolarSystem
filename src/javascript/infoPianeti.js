@@ -2,8 +2,12 @@ const pianetiInfo = {
     sole: {
         nome: "Sole",
         diametroKm: 1392700,
+        distanzaDalSoleKm: '',
+        periodoOrbitaleGiorni: '',
         composizione: "gassoso",
-        src: "src/img/img-sistemaSolare/sun.png"
+        src: "src/img/img-sistemaSolare/sun.png",
+        descrizione: "Il Sole è la stella al centro del nostro sistema solare. È un'enorme e caldissima sfera di plasma composta principalmente da idrogeno (74%) ed elio (24%). La sua massa rappresenta circa il 99,86% dell'intero sistema solare.",
+        curiosita: "Non è fermo: Il Sole orbita attorno al centro della Via Lattea a una velocità di circa 720.000 km/h, trascinando con sé l'intero sistema solare."
     },
     mercurio: {
         nome: "Mercurio",

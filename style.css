@@ -79,6 +79,7 @@ body{
 }
 .labelNomePianeta{
     font-size: clamp(2rem, 6rem, 10vw);
+    display: block;
 }
 .textLabel{
     color: var(--text);

@@ -1,28 +1,12 @@
 //file - info pianeti
 import infoPianeti from './infoPianeti.js'
 
+gsap.registerPlugin(ScrollTrigger);
+
 //pianeti
 const pianeti = document.querySelectorAll(".planet");
 let selected_planet;
 let next_planet;
-
-// * -- STILE DEI PIANETI AL CARICAMENTO DELLA PAGINA --
-document.addEventListener("DOMContentLoaded", () => {
-
-    pianeti.forEach(pianeta => {
-        // div per il gradiente sfumato
-        /*const divGradient = document.createElement("div");
-        divGradient.classList.add("transparent-gradient");
-        pianeta.appendChild(divGradient);*/
-    });
-
-    //aggiunta delle classi
-    //all'inizio il sole e mercurio sono visibili
-    pianeti[pianeti.length - 1].classList.add("selected");
-    pianeti[pianeti.length - 2].classList.add("nextPlanet");
-
-    CheckSelection();
-});
 
 // * -- creazione del menu con l'utilizzo dei dizionari --
 Object.keys(infoPianeti).forEach(chiave => {
@@ -43,14 +27,80 @@ Object.keys(infoPianeti).forEach(chiave => {
     document.getElementById("navMenu").appendChild(contVoce);
 });
 
-function CheckSelection() {
+//dichiarazione dei div per la descrizione dei pianeti
+const card = {
+    nome: {},
+    diametro: {},
+    orbita: {},
+    distanza: {},
+    composizione: {},
+    descrizione: {},
+    curiosita: {}
+};
 
+// * -- STILE DEI PIANETI AL CARICAMENTO DELLA PAGINA --
+document.addEventListener("DOMContentLoaded", () => {
+
+    //aggiunta delle classi all'inizio
+    pianeti[pianeti.length - 1].classList.add("selected");
+    pianeti[pianeti.length - 2].classList.add("nextPlanet");
+
+    //div card per contenere tutte le informazioni
+    const contLabelPianeta = document.createElement("div");
+    contLabelPianeta.classList.add("labelPianeta");
+
+    Object.keys(card).forEach(chiave => {
+        card[chiave].container = document.createElement("div");
+        card[chiave].label = document.createElement("span");
+        card[chiave].value = document.createElement("span");
+
+        // stile del Label
+        card[chiave].label.classList.add("labelCaratteristiche", "pixel-font");
+
+        // stile del Valore
+        card[chiave].value.classList.add("textLabel", "primary-font");
+
+        // container 
+        card[chiave].container.appendChild(card[chiave].label);
+        card[chiave].container.appendChild(card[chiave].value);
+        card[chiave].container.style.margin = "5px 0";
+
+        contLabelPianeta.appendChild(card[chiave].container);
+    });
+    
+    // Classe specifica per il nome del pianeta
+    card.nome.value.classList.add("labelNomePianeta");
+
+    //scritte dei label
+    card.nome.label.textContent = "Pianeta selezionato: ";
+    card.diametro.label.textContent = `Diametro: `;
+    card.distanza.label.textContent = `Distanza dal sole: `;
+    card.orbita.label.textContent = `Tempo di orbita attorno al Sole: `;
+    card.composizione.label.textContent = `Composizione: `;
+    card.descrizione.label.textContent = `Descrizione: `;
+    card.curiosita.label.textContent = `Curiosità: `;
+
+    const contSolarSystem = document.getElementById("contSolarSystem");
+    if (contSolarSystem) {
+        contSolarSystem.appendChild(contLabelPianeta);
+    }
+
+    CheckSelection();
+});
+
+// * -- Funzione per aggiornare la selezione dei pianeti --
+function CheckSelection() {
     selected_planet = document.querySelector(".selected");
     next_planet = document.querySelector(".nextPlanet");
 
-    let index = pianeti.length;
-    pianeti.forEach((pianeta, indice) => {
+    updatePlanetPosition();
+    updatePlanetDescription();
+}
 
+// * -- funzione per aggiornare la posizione dei pianeti --
+function updatePlanetPosition() {
+    let index = pianeti.length; 
+    pianeti.forEach((pianeta, indice) => {
         const indiceSelezionato = Array.from(pianeti).indexOf(selected_planet);
         const differenza = indice - indiceSelezionato;
         
@@ -61,152 +111,74 @@ function CheckSelection() {
         pianeta.style.opacity = differenza === 0 ? 1 : (differenza === 1 ? 0.5 : 0);
         pianeta.style.zIndex = index;
         index--;
-
     });
-
-    //aggiunta caratteristiche dei pianeti selezionati
-    Object.keys(infoPianeti).forEach(chiave => {
-
-        let namePlatet = selected_planet.querySelector('img').alt.toLocaleLowerCase();
-
-        if (chiave === namePlatet) {
-
-            const divLabelPianeta = document.createElement("div");
-            divLabelPianeta.classList.add("labelPianeta");
-
-            //nome del pianeta
-            if (infoPianeti[chiave].nome) {
-                let contNomePianeta = document.createElement("div");
-                contNomePianeta.style.margin = "5px 0";
-
-                let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche","pixel-font");
-                label.textContent = `Pianeta selezionato: `;
-
-                let nomePianeta = document.createElement("span");
-                nomePianeta.classList.add("textLabel","labelNomePianeta","primary-font");
-                nomePianeta.style.display = "block";
-                nomePianeta.textContent = infoPianeti[chiave].nome;
-
-                contNomePianeta.appendChild(label);
-                contNomePianeta.appendChild(nomePianeta);
-                divLabelPianeta.appendChild(contNomePianeta);
-            };
-            //diametro
-            if (infoPianeti[chiave].diametroKm) {
-                let contDiametroPianeta = document.createElement("div");
-                contDiametroPianeta.style.margin = "5px 0";
-
-                let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche","pixel-font");
-                label.textContent = `Diametro: `;
-
-                let diametroPianeta = document.createElement("span");
-                diametroPianeta.classList.add("textLabel","primary-font");
-                diametroPianeta.textContent = infoPianeti[chiave].diametroKm +'Km';
-
-                contDiametroPianeta.appendChild(label).appendChild(diametroPianeta);
-                divLabelPianeta.appendChild(contDiametroPianeta);
-            };
-            //distanza dal sole
-            if (infoPianeti[chiave].distanzaDalSoleKm) {
-                let contDistanzaPianetaSole = document.createElement("div");
-                contDistanzaPianetaSole.style.margin = "5px 0";
-
-                let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche","pixel-font");
-                label.textContent = `Distanza dal sole: `;
-
-                let distanzaPianetaSole = document.createElement("span");
-                distanzaPianetaSole.classList.add("textLabel","primary-font");
-                distanzaPianetaSole.textContent = infoPianeti[chiave].distanzaDalSoleKm + 'Km';
-
-                contDistanzaPianetaSole.appendChild(label).appendChild(distanzaPianetaSole);
-                divLabelPianeta.appendChild(contDistanzaPianetaSole);
-            };
-            //tempo di orbita attorno al sole
-            if (infoPianeti[chiave].periodoOrbitaleGiorni) {
-                let contOrbitaPianeta = document.createElement("div");
-                contOrbitaPianeta.style.margin = "5px 0";
-
-                let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche","pixel-font");
-                label.textContent = `Tempo di orbita attorno al Sole: `;
-
-                let tempoOrbita = document.createElement("span");
-                tempoOrbita.classList.add("textLabel","primary-font");
-                tempoOrbita.textContent = `${infoPianeti[chiave].periodoOrbitaleGiorni} giorni`;
-
-                contOrbitaPianeta.appendChild(label).appendChild(tempoOrbita);
-                divLabelPianeta.appendChild(contOrbitaPianeta);
-            };
-            //composizione del pianeta
-            if (infoPianeti[chiave].composizione) {
-                let contComposizionePianeta = document.createElement("div");
-                contComposizionePianeta.style.margin = "5px 0";
-
-                let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche","pixel-font");
-                label.textContent = `Pianeta selezionato: `;
-
-                let composizione = document.createElement("span");
-                composizione.classList.add("textLabel","primary-font");
-                composizione.textContent = infoPianeti[chiave].composizione;
-
-                contComposizionePianeta.appendChild(label).appendChild(composizione);
-                divLabelPianeta.appendChild(contComposizionePianeta);
-            };
-            //descrizione del pianeta
-            if (infoPianeti[chiave].descrizione && document.innerWidth > 768) {
-                let contDescrizionePianeta = document.createElement("div");
-                contDescrizionePianeta.style.margin = "5px 0";
-
-                let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche","pixel-font");
-                label.textContent = `Descrizione: `;
-
-                let descrizionePianeta = document.createElement("span");
-                descrizionePianeta.classList.add("textLabel","primary-font");
-                descrizionePianeta.style.display = "block";
-                descrizionePianeta.textContent = infoPianeti[chiave].descrizione;
-
-                contDescrizionePianeta.appendChild(label);
-                contDescrizionePianeta.appendChild(descrizionePianeta);
-                divLabelPianeta.appendChild(contDescrizionePianeta);
-            };
-            //curiosità del pianeta
-            if (infoPianeti[chiave].curiosita && document.innerWidth > 768) {
-                let contCuriositaPianeta = document.createElement("div");
-                contCuriositaPianeta.style.margin = "5px 0";
-
-                let label = document.createElement("span");
-                label.classList.add("labelCaratteristiche","pixel-font");
-                label.textContent = `Curiosità: `;
-
-                let nomePianeta = document.createElement("span");
-                nomePianeta.classList.add("textLabel","primary-font");
-                nomePianeta.style.display = "block";
-                nomePianeta.textContent = infoPianeti[chiave].curiosita;
-
-                contCuriositaPianeta.appendChild(label);
-                contCuriositaPianeta.appendChild(nomePianeta);
-                divLabelPianeta.appendChild(contCuriositaPianeta);
-            };
-
-            document.getElementById("contSolarSystem").appendChild(divLabelPianeta);
-        }
-    })
-
 }
+
+// * -- funzione per aggiornare la descrizione del pianeta selezionato --
+function updatePlanetDescription() {
+    Object.keys(infoPianeti).forEach(pianeta => {
+        let namePlanet = selected_planet.querySelector('img').alt.toLocaleLowerCase();
+
+        if (pianeta === namePlanet) {
+            // Nome del pianeta
+            if (infoPianeti[pianeta].nome) {
+                card.nome.value.textContent = infoPianeti[pianeta].nome;
+            }
+            else{
+                card.nome.value.textContent = '';
+            }
+            // Diametro
+            if (infoPianeti[pianeta].diametroKm) {
+                card.diametro.value.textContent = infoPianeti[pianeta].diametroKm + ' Km';
+            }
+            else{
+                card.diametro.value.textContent = '';
+            }
+            // Distanza dal sole
+            if (infoPianeti[pianeta].distanzaDalSoleKm) {
+                card.distanza.value.textContent = infoPianeti[pianeta].distanzaDalSoleKm + ' Km';
+            }
+            else{
+                card.distanza.value.textContent = '';
+            }
+            // Tempo di orbita
+            if (infoPianeti[pianeta].periodoOrbitaleGiorni) {
+                card.orbita.value.textContent = `${infoPianeti[pianeta].periodoOrbitaleGiorni} giorni`;
+            }
+            else{
+                card.orbita.value.textContent = '';
+            }
+            // Composizione
+            if (infoPianeti[pianeta].composizione) {
+                card.composizione.value.textContent = infoPianeti[pianeta].composizione;
+            }
+            else{
+                card.composizione.value.textContent = '';
+            }
+            // Descrizione
+            if (infoPianeti[pianeta].descrizione && window.innerWidth > 768) {
+                card.descrizione.value.textContent = infoPianeti[pianeta].descrizione;
+            }
+            else{
+                card.descrizione.value.textContent = '';
+            }
+            // Curiosità
+            if (infoPianeti[pianeta].curiosita && window.innerWidth > 768) {
+                card.curiosita.value.textContent = infoPianeti[pianeta].curiosita;
+            }
+            else{
+                card.curiosita.value.textContent = '';
+            }
+        }
+    });
+}
+
 
 // cambio del pianeta selezionato al click del div nel menu
 document.querySelectorAll(".contVoce").forEach(contVoce => {
     contVoce.addEventListener("click", function() {
 
         document.querySelector(".selected").classList.remove("selected");
-
-        const descrizionePlanet = document.querySelector(".labelPianeta");
-        if (descrizionePlanet) descrizionePlanet.remove();
 
         const nextPlanet = document.querySelector(".nextPlanet");
         if (nextPlanet) nextPlanet.classList.remove("nextPlanet");
@@ -223,3 +195,5 @@ document.querySelectorAll(".contVoce").forEach(contVoce => {
         CheckSelection();
     });
 })
+
+// TODO: aggiungere la possibilità di cambiare pianeta allo scrolling
