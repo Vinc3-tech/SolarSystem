@@ -8,6 +8,10 @@ body{
     background-color: var(--primary-background);
     color: var(--text);
 }
+body::selection{
+    background-color: var(--evidention);
+    color: var(--primary-background);
+}
 
 #title{
     position: absolute;
@@ -27,7 +31,7 @@ body{
 
 #contNebulose{
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 }
@@ -97,7 +101,7 @@ body{
     display: flex;
     flex-direction: column;
     width: clamp(150px, 20%, 300px);
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 0;
     transform: translate(0, -50%);
@@ -133,8 +137,8 @@ body{
 .btnDiscoverMore{
     padding: 20px 30px;
     width: 50%;
-    margin: 20px 20px 20px 0;
-    border: none;
+    margin: 50px 20px 20px 0;
+    border: 1px solid var(--evidention);
     background-color: var(--primary-background);
     color: var(--evidention);
     border-radius: 25px;
