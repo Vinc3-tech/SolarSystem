@@ -17,7 +17,78 @@
 </head>
 <body>
 
-    
+    <canvas id="contNebulose"></canvas>
+
+    <section id="heroSection">
+        <div id="sectionSX">
+            <img src="../img/img-sistemaSolare/mercury.png" alt="mercurio" id="imgPianeta">
+        </div>
+        <div id="sectionDX">
+            <div id="cardPianeta">
+                <div id="titlePianeta" class="primary-font">
+                    <h1 class="highlighted">Mercurio</h1>
+                </div>
+                <div id="effectFrase" class="primary-font">
+                    <h3>L'instancabile messaggero del Sole</h3>
+                </div>
+                <div id="descrizionePianeta" class="pixel-font">
+                    <p>
+                        Mercurio è il pianeta più vicino al Sole e il più piccolo dell'intero Sistema Solare. Per migliaia di anni è stato osservato dagli astronomi come un piccolo punto luminoso che compare solo per pochi istanti all'alba o al tramonto, nascosto dall'intensa luce della nostra stella.<br>Nonostante le sue dimensioni ridotte, Mercurio è un mondo sorprendente. La sua superficie è ricoperta da antichi crateri, enormi scogliere e vaste pianure laviche che raccontano una storia iniziata oltre 4,5 miliardi di anni fa, quando il Sistema Solare era ancora giovane.<br>A prima vista potrebbe sembrare un pianeta morto e immutabile, ma le missioni spaziali hanno rivelato un corpo celeste molto più complesso: possiede un enorme nucleo metallico, un campo magnetico e perfino depositi di ghiaccio d'acqua nascosti nei crateri perennemente in ombra vicino ai poli.<br>Mercurio rappresenta un vero laboratorio naturale per comprendere come si formano ed evolvono i pianeti rocciosi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sectionStatistiche">
+        <div class="cardStatisticaPianeta">
+            <span class="labelStatistica pixel-font">Diametro:<br></span>
+            <span class="ValueStatistica primary-font">4879</span>
+        </div>
+        <div class="cardStatisticaPianeta">
+            <span class="labelStatistica pixel-font">Temperatura MAX:<br></span>
+            <span class="ValueStatistica primary-font">430</span><!--°C-->
+        </div>
+        <div class="cardStatisticaPianeta">
+            <span class="labelStatistica pixel-font">Temperatura MIN:<br></span>
+            <span class="ValueStatistica primary-font">-180</span><!--°C-->
+        </div>
+    </section>
+
+    <section id="sectionPianetaSezionato">
+        <div id="contPianetaSVG">
+            <svg viewBox="0 0 500 500" id="pianetaSVG">
+                <circle class="crosta" cx="250" cy="250" r="180" />
+                <circle class="mantello" cx="250" cy="250" r="160" />
+                <circle class="nucleo" cx="250" cy="250" r="80" />
+            </svg>
+        </div>
+        <div id="contCardPianetaSVG">
+            <div class="cardSVG cardNucleo">
+                <span>Nucleo</span><br>
+                <span>
+                    Il nucleo occupa circa l'85% del raggio del pianeta, una proporzione molto maggiore rispetto alla Terra. È composto principalmente da ferro e nichel e contiene una parte ancora liquida. Proprio il movimento del ferro liquido genera il debole campo magnetico del pianeta.
+                </span>
+            </div>
+            <div class="cardSVG cardMantello">
+                <span>Mantello</span><br>
+                <span>
+                    Attorno al nucleo si trova un sottile mantello roccioso formato principalmente da silicati. È molto meno spesso rispetto a quello terrestre.
+                </span>
+            </div>
+            <div class="cardSVG cardCrosta">
+                <span>Crosta</span><br>
+                <span>
+                    La crosta ha uno spessore compreso tra circa 35 e 50 chilometri ed è ricca di antichi crateri, pianure vulcaniche e gigantesche scarpate formatesi quando il pianeta si è raffreddato e contratto nel corso di miliardi di anni.
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="../javascript/nebulose.js"></script>
+    <script src="../javascript/sitePlanet.js"></script>
     
 </body>
 </html>
