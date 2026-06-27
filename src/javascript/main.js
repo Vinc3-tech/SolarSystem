@@ -1,30 +1,32 @@
-//file - info pianeti
+// * -- FILE IMPORTATI --
 import infoPianeti from './infoPianeti.js'
-import { card, AnimateCard } from './card.js';
 
+// * -- FUNZIONI IMPORTATE --
+import { card, AnimateCard, updatePlanetDescription } from './card.js';
+
+//plugin registrati
 gsap.registerPlugin(ScrollTrigger);
 
 //pianeti
-const pianeti = document.querySelectorAll(".planet");
-let selected_planet;
-let next_planet;
+export const pianeti = document.querySelectorAll(".planet");
+export let selected_planet;
+export let next_planet;
+let solarSystemScrollTrigger;
+let currentIndex = 0;
 
 // * -- STILE DEI PIANETI AL CARICAMENTO DELLA PAGINA --
 document.addEventListener("DOMContentLoaded", () => {
 
     //aggiunta delle classi all'inizio
-    pianeti[0].classList.add("selected");
-    pianeti[1].classList.add("nextPlanet");
-
-    CheckSelection();
+    SelectPlanet(0);
     CreateScrollTrigger();
 });
 
 // -- animazione dei pianeti (loop infinito) --
-const durationPlanetDuration = 180;
+const DURATION_ROTATE_PLANET = 180;
 gsap.to(document.querySelectorAll(".planet"), {
     rotate: 360,
-    duration: durationPlanetDuration,
+    duration: DURATION_ROTATE_PLANET,
     repeat: -1,
     ease: "none"
 })
@@ -39,11 +41,42 @@ export function CheckSelection() {
     AnimateCard();
 }
 
+// * -- funzione per selezionare un pianeta da menu o scroll --
+export function SelectPlanet(index, updateScroll = false) {
+    if (!pianeti[index]) return;
+
+    document.querySelector(".selected")?.classList.remove("selected");
+    document.querySelector(".nextPlanet")?.classList.remove("nextPlanet");
+
+    pianeti[index].classList.add("selected");
+    if (pianeti[index + 1]) {
+        pianeti[index + 1].classList.add("nextPlanet");
+    }
+
+    currentIndex = index;
+    CheckSelection();
+
+    if (updateScroll) {
+        UpdateScrollPosition(index);
+    }
+}
+
+function UpdateScrollPosition(index) {
+    if (!solarSystemScrollTrigger) return;
+
+    const progress = index / (pianeti.length - 1);
+    const scrollPosition = solarSystemScrollTrigger.start + ((solarSystemScrollTrigger.end - solarSystemScrollTrigger.start) * progress);
+
+    solarSystemScrollTrigger.scroll(scrollPosition);
+    ScrollTrigger.update();
+}
+
 // * -- funzione per aggiornare la posizione dei pianeti --
 function updatePlanetPosition() {
 
     const MAX_SCALE = 1.5;  //scala massima (pianeta selezionato)
-    const MIN_DISTANCE_PERCENT = 40 //distanza minima tra il pianeta selezionato e quello dopo
+    const MIN_DISTANCE_PERCENT = 40; //distanza minima tra il pianeta selezionato e quello dopo
+    const DURATION_CHANGE_PLANET = .5;  //tempo per cambiare tra un pianeta e l'altro
 
     pianeti.forEach((pianeta, indice) => {
         const indiceSelezionato = Array.from(pianeti).indexOf(selected_planet);
@@ -58,84 +91,29 @@ function updatePlanetPosition() {
             autoAlpha: differenza === 0 ? 1 : (differenza === 1 ? 0.5 : 0),
             zIndex: indice,
             ease: "power2.out",
-            duration: .5,
+            duration: DURATION_CHANGE_PLANET,
         });
         
     });
 }
 
-// * -- funzione per aggiornare la descrizione del pianeta selezionato --
-function updatePlanetDescription() {
-    Object.keys(infoPianeti).forEach(pianeta => {
-        let namePlanet = selected_planet.querySelector('img').alt.toLocaleLowerCase();
-
-        if (pianeta === namePlanet) {
-            const info = infoPianeti[pianeta];
-            if (!info) return;
-
-            // nome del pianeta
-            if (card.nome) {
-                card.nome.value.textContent = info.nome ?? '';
-            }
-            // diametro
-            if (card.diametro) {
-                card.diametro.value.textContent = info.diametroKm ? `${info.diametroKm} Km` : '';
-            }
-            // distanza dal sole
-            if (card.distanza) {
-                card.distanza.value.textContent = info.distanzaDalSoleKm ? `${info.distanzaDalSoleKm} Km` : '';
-            }
-            // tempo di orbita
-            if (card.orbita) {
-                card.orbita.value.textContent = info.periodoOrbitaleGiorni ? `${info.periodoOrbitaleGiorni} giorni` : '';
-            }
-            // composizione
-            if (card.composizione) {
-                card.composizione.value.textContent = info.composizione ?? '';
-            }
-            const isDesktop = window.innerWidth > 768;  // controllo responsive
-            // descrizione
-            if (card.descrizione) {
-                card.descrizione.value.textContent = (isDesktop && info.descrizione) ? info.descrizione : '';
-            }
-            //curiosità
-            if (card.curiosita) {
-                card.curiosita.value.textContent = (isDesktop && info.curiosita) ? info.curiosita : '';
-            }
-
-            if (card.link) {
-                card.link.onclick = () => {
-                    if (info.linkPageHTML) {
-                        window.location.href = info.linkPageHTML;
-                    }
-                };
-            }
-        }
-
-    });
-}
-
-let currentIndex = 0;
 function CreateScrollTrigger() {
     if (typeof ScrollTrigger === "undefined") return;
 
-    ScrollTrigger.create({
+    const VALUE_END_SCROLLTRIGGER = 5000
+
+    solarSystemScrollTrigger = ScrollTrigger.create({
         trigger: "#contSolarSystem",
         start: "top top",
-        end: "+=5000",
-        pin: "#contSolarSystem",
+        end: `+=${VALUE_END_SCROLLTRIGGER}`,
+        pin: true,
         scrub: true,
         onUpdate: self => {
 
             const index = Math.round(self.progress * (pianeti.length - 1));
 
             if(index !== currentIndex){
-                currentIndex = index;
-                document.querySelector(".selected")?.classList.remove("selected");  //se è presente un elemento con questa classe viene rimossa
-
-                pianeti[index].classList.add("selected");
-
-                CheckSelection();
+                SelectPlanet(index);
             }
         }
 

@@ -7,8 +7,8 @@
     --text: #F8FAFC;
     --secondary-text: #94A3B8;
 
-    --accent-primary: #38BDF8;   /* ciano: navigazione/titoli */
-    --accent-highlight: #FACC15; /* giallo: selezione/CTA */
+    --accent-primary: #38BDF8;
+    --accent-highlight: #FACC15;
 
     --border-soft: rgba(248, 250, 252, 0.18);
 }

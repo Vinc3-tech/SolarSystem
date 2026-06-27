@@ -158,6 +158,11 @@ body::selection{
     .voce{
         display: none;
     }
+
+    .planet{
+        filter: drop-shadow(0 0 0 var(--accent-highlight));
+    }
+
     .labelPianeta{
         top: 45%;
         left: 50%;

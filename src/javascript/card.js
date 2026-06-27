@@ -1,4 +1,10 @@
-// * -- dizionario per la descrizione dei pianeti --
+// * -- FILE IMPORTATI --
+import infoPianeti from './infoPianeti.js'
+
+// * -- COSTANTI IMPORTATE --
+import { selected_planet, next_planet } from './main.js';
+
+// * -- dizionario contenente tutte la caratteristiche dei pianeti --
 export const card = {
     nome: {},
     diametro: {},
@@ -9,9 +15,10 @@ export const card = {
     curiosita: {},
 };
 
+// * -- CREAZIONE CARD AL CARICAMENTO DELLA PAGINA -- 
 document.addEventListener("DOMContentLoaded", () => {
 
-    //div card per contenere tutte le informazioni
+    //main div per contenere tutte le informazioni
     const contLabelPianeta = document.createElement("aside");
     contLabelPianeta.classList.add("labelPianeta");
 
@@ -37,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //classe specifica per il nome del pianeta
     card.nome.value.classList.add("labelNomePianeta");
 
-    //scritte dei label
+    //scritte dei label di default
     card.nome.label.textContent = "Pianeta selezionato: ";
     card.diametro.label.textContent = `Diametro: `;
     card.distanza.label.textContent = `Distanza dal sole: `;
@@ -51,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     card.link.textContent = "Scopri di più";
     card.link.classList.add("btnDiscoverMore","primary-font");
     contLabelPianeta.appendChild(card.link);
-
+    //animazioni del btn
     card.link.addEventListener("mouseenter", () => {
         gsap.to(card.link, {
             y: -5,
@@ -72,29 +79,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const contSolarSystem = document.getElementById("contSolarSystem");
     if (contSolarSystem) {
-        contSolarSystem.appendChild(contLabelPianeta);  //aggiungi il contenitore della descrizione alla pagina
+        contSolarSystem.appendChild(contLabelPianeta);  //aggiungi il contenitore della descrizione alla pagina se esiste
     }
 
 });
 
+// * -- funzione per aggiornare la descrizione del pianeta selezionato --
+export function updatePlanetDescription() {
+    Object.keys(infoPianeti).forEach(pianeta => {
+        let namePlanet = selected_planet.querySelector('img').alt.toLocaleLowerCase();
+
+        if (pianeta === namePlanet) {
+            const info = infoPianeti[pianeta];
+            if (!info) return;
+
+            // nome del pianeta
+            if (card.nome) {
+                card.nome.value.textContent = info.nome ?? '';
+            }
+            // diametro
+            if (card.diametro) {
+                card.diametro.value.textContent = info.diametroKm ? `${info.diametroKm} Km` : '';
+            }
+            // distanza dal sole
+            if (card.distanza) {
+                card.distanza.value.textContent = info.distanzaDalSoleKm ? `${info.distanzaDalSoleKm} Km` : '';
+            }
+            // tempo di orbita
+            if (card.orbita) {
+                card.orbita.value.textContent = info.periodoOrbitaleGiorni ? `${info.periodoOrbitaleGiorni} giorni` : '';
+            }
+            // composizione
+            if (card.composizione) {
+                card.composizione.value.textContent = info.composizione ?? '';
+            }
+
+            const isDesktop = window.innerWidth > 768;  // controllo responsive
+            // descrizione
+            if (card.descrizione && (isDesktop && info.descrizione)) {
+                card.descrizione.value.textContent =  info.descrizione;
+            }
+            else{
+                card.descrizione.label.textContent = '';
+                card.descrizione.value.textContent = '';
+            }
+            //curiosità
+            if (card.curiosita && (isDesktop && info.curiosita)) {
+                card.curiosita.value.textContent =  info.curiosita;
+            }
+            else{
+                card.curiosita.label.textContent = '';
+                card.curiosita.value.textContent = '';
+            }
+
+            if (card.link) {
+                card.link.onclick = () => {
+                    if (info.linkPageHTML) {
+                        window.location.href = info.linkPageHTML;
+                    }
+                };
+            }
+        }
+
+    });
+}
+
+// * -- funzione per animare la card in ingresso --
 export function AnimateCard() {
 
     let tl = gsap.timeline();
-    const duration = 1
+    const DURATION_CARD_ANIMATION = 1   //durata totale dell'animazione della card
 
     tl.add("introCard");
     tl.fromTo(document.querySelectorAll(".labelPianeta"), {
         y: 25,
-        duration: duration,
+        duration: DURATION_CARD_ANIMATION,
         ease: "power4.out"
     }, {
         y: 0,
     })
-    let delay = .02
+    let delay = .02 //delay iniziale del primo elemento
     Object.keys(card).forEach(chiave => {
         tl.fromTo(card[chiave].container, {
             y: 15,
-            duration: duration,
+            duration: DURATION_CARD_ANIMATION,
         }, {
             y: 0,
             delay: delay,
@@ -103,5 +171,3 @@ export function AnimateCard() {
         delay += .08;
     });
 }
-
-//animazione del btn scopri di più

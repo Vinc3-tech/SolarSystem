@@ -1,13 +1,15 @@
-// * -- file con le info dei pianeti --
+// * -- FILE IMPORTATI --
 import infoPianeti from './infoPianeti.js'
-import { CheckSelection } from './main.js';
 
-//pianeti
-const pianeti = document.querySelectorAll(".planet");
+// * -- FUNZIONI IMPORTATE --
+import { SelectPlanet } from './main.js';
+
+// * -- COSTANTI IMPORTATE --
+import { pianeti } from './main.js';
 
 // * -- creazione del menu con l'utilizzo dei dizionari --
 Object.keys(infoPianeti).forEach(chiave => {
-    let contVoce = document.createElement("div");
+    let contVoce = document.createElement("div");   //div contenente img e nome pianeta
     contVoce.classList.add("contVoce");
 
     let imgPianeta = document.createElement("img");
@@ -21,7 +23,9 @@ Object.keys(infoPianeti).forEach(chiave => {
 
     contVoce.appendChild(imgPianeta);
     contVoce.appendChild(voce);
-    document.getElementById("navMenu").appendChild(contVoce);
+    
+    const navMenu = document.querySelector("#navMenu");
+    if (navMenu) navMenu.appendChild(contVoce);
 
     AnimateMenu(contVoce, voce, imgPianeta);
 });
@@ -60,6 +64,12 @@ function AnimateMenu(contVoce, voce, imgPianeta) {
     });
 
     contVoce.animation = tl;
+
+    //al caricamento della pagina la voce selezionata è la prima
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".contVoce")[0].classList.add("voceActive");
+        document.querySelectorAll(".contVoce")[0].animation.play();
+    })
     UpdateMenu(contVoce);
 }
 
@@ -76,18 +86,10 @@ function UpdateMenu(contVoce) {
         contVoce.querySelector(".voce").classList.add("voceActive");
         contVoce.animation.play();
         
-        document.querySelector(".selected")?.classList.remove("selected");
-        document.querySelector(".nextPlanet")?.classList.remove("nextPlanet");
-        
         for (let i = 0; i < pianeti.length; i++) {
             if ( this.querySelector('img').alt.toLocaleLowerCase() === pianeti[i].querySelector('img').alt.toLocaleLowerCase() ) {
-                pianeti[i].classList.add("selected");
-                if (pianeti[i+1]) {
-                    pianeti[i+1].classList.add("nextPlanet");
-                }
+                SelectPlanet(i, true);
             }
         }
-
-        CheckSelection();
     });
 }
