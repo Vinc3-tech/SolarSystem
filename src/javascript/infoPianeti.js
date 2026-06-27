@@ -84,7 +84,7 @@ const pianetiInfo = {
         composizione: "gassoso",
         src: "src/img/img-sistemaSolare/uranus.png",
         descrizione: "Urano è il settimo pianeta dal Sole e il terzo per diametro nel Sistema Solare. È classificato come gigante di ghiaccio per la sua composizione dominata da acqua, ammoniaca e metano in forma fluida. Scoperto nel 1781 da William Herschel, fu il primo pianeta individuato con l’aiuto di un telescopio, ampliando per la prima volta i confini noti del sistema planetario.",
-        curiosita: "Uranus ruota su un asse inclinato di circa 98°, quasi parallelo al piano orbitale. Di conseguenza, “gira su un fianco” e alterna periodi polari di luce e oscurità che durano 21 anni terrestri. Questa peculiare inclinazione, probabilmente dovuta a un antico impatto con un corpo delle dimensioni della Terra, genera le stagioni più estreme del Sistema Solare. Inoltre il pianeta possiede un sistema di 13 anelli stretti, formati da particelle scure e sottili, probabilmente residui di antichi satelliti distrutti. Le 28 lune note includono cinque principali — Miranda, Ariel, Umbriel, Titania e Oberon — i cui nomi derivano da opere di William Shakespeare e Alexander Pope.",
+        curiosita: "Uranus ruota su un asse inclinato di circa 98°, quasi parallelo al piano orbitale. Di conseguenza, “gira su un fianco” e alterna periodi polari di luce e oscurità che durano 21 anni terrestri. Questa peculiare inclinazione, probabilmente dovuta a un antico impatto con un corpo delle dimensioni della Terra, genera le stagioni più estreme del Sistema Solare. Inoltre il pianeta possiede un sistema di 13 anelli stretti, formati da particelle scure e sottili.",
         linkPageHTML: "src/html/urano.html"
     },
     nettuno: {
