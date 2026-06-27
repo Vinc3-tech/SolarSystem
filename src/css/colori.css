@@ -1,18 +1,14 @@
 /* *-- palette di colori --*/
 
-:root{
+:root {
+    --primary-background: #050816;
+    --secondary-background: rgba(11, 16, 38, 0.86);
 
-    --primary-background : #050816;
-    --secondary-background : #0B1026;
+    --text: #F8FAFC;
+    --secondary-text: #94A3B8;
 
-    --text : #F8FAFC;
-    --secondary-text : #94A3B8;
+    --accent-primary: #38BDF8;   /* ciano: navigazione/titoli */
+    --accent-highlight: #FACC15; /* giallo: selezione/CTA */
 
-    --blu-accent: #38BDF8;
-    --purple-accent: #A855F7;
-    
-    --evidention: #FACC15;
-
-    --star: #F8FAFC;
-
+    --border-soft: rgba(248, 250, 252, 0.18);
 }

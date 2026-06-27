@@ -26,28 +26,6 @@ Object.keys(infoPianeti).forEach(chiave => {
     AnimateMenu(contVoce, voce, imgPianeta);
 });
 
-// cambio del pianeta selezionato al click del div nel menu
-document.querySelectorAll(".contVoce").forEach(el => {
-    el.addEventListener("click", function() {
-
-        document.querySelector(".selected").classList.remove("selected");
-
-        const nextPlanet = document.querySelector(".nextPlanet");
-        if (nextPlanet) nextPlanet.classList.remove("nextPlanet");
-        
-        for (let i = 0; i < pianeti.length; i++) {
-            if ( this.querySelector('img').alt.toLocaleLowerCase() === pianeti[i].querySelector('img').alt.toLocaleLowerCase() ) {
-                pianeti[i].classList.add("selected");
-                if (pianeti[i-1]) {
-                    pianeti[i-1].classList.add("nextPlanet");
-                }
-            }
-        }
-
-        CheckSelection();
-    });
-})
-
 //funzione per l'animzione del menu
 function AnimateMenu(contVoce, voce, imgPianeta) {
 
@@ -57,7 +35,7 @@ function AnimateMenu(contVoce, voce, imgPianeta) {
         paused: true,
         defaults: {     //valori di default che devono avere tutte le animazioni
             duration: durationAnim,
-            ease: "power1.out"
+            ease: "power1.InOut"
         }
     });
 
@@ -76,6 +54,40 @@ function AnimateMenu(contVoce, voce, imgPianeta) {
         tl.play();
     });
     contVoce.addEventListener("mouseleave", () => {
-        tl.reverse();
+        if (!voce.classList.contains("voceActive")) {
+            tl.reverse();
+        }
+    });
+
+    contVoce.animation = tl;
+    UpdateMenu(contVoce);
+}
+
+function UpdateMenu(contVoce) {
+    // cambio del pianeta selezionato al click del div nel menu
+    contVoce.addEventListener("click", function() {
+
+        const oldActive = document.querySelector(".voceActive");
+        if (oldActive) {
+            oldActive.classList.remove("voceActive");
+            oldActive.closest(".contVoce").animation.reverse();
+        }
+
+        contVoce.querySelector(".voce").classList.add("voceActive");
+        contVoce.animation.play();
+        
+        document.querySelector(".selected")?.classList.remove("selected");
+        document.querySelector(".nextPlanet")?.classList.remove("nextPlanet");
+        
+        for (let i = 0; i < pianeti.length; i++) {
+            if ( this.querySelector('img').alt.toLocaleLowerCase() === pianeti[i].querySelector('img').alt.toLocaleLowerCase() ) {
+                pianeti[i].classList.add("selected");
+                if (pianeti[i+1]) {
+                    pianeti[i+1].classList.add("nextPlanet");
+                }
+            }
+        }
+
+        CheckSelection();
     });
 }

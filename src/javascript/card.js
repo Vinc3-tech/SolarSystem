@@ -1,5 +1,5 @@
 // * -- dizionario per la descrizione dei pianeti --
-const card = {
+export const card = {
     nome: {},
     diametro: {},
     orbita: {},
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             y: -5,
             ease: "none",
             cursor: "pointer",
-            boxShadow: "0 5px 20px var(--evidention)",
+            boxShadow: "0 5px 20px var(--accent-highlight)",
             duration: .25,
         });
     });
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function AnimateCard() {
+export function AnimateCard() {
 
     let tl = gsap.timeline();
     const duration = 1

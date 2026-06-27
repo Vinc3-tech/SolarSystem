@@ -1,5 +1,6 @@
 //file - info pianeti
 import infoPianeti from './infoPianeti.js'
+import { card, AnimateCard } from './card.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
     CreateScrollTrigger();
 });
 
+// -- animazione dei pianeti (loop infinito) --
+const durationPlanetDuration = 180;
+gsap.to(document.querySelectorAll(".planet"), {
+    rotate: 360,
+    duration: durationPlanetDuration,
+    repeat: -1,
+    ease: "none"
+})
+
 // * -- Funzione per aggiornare la selezione dei pianeti --
 export function CheckSelection() {
     selected_planet = document.querySelector(".selected");
@@ -31,19 +41,26 @@ export function CheckSelection() {
 
 // * -- funzione per aggiornare la posizione dei pianeti --
 function updatePlanetPosition() {
-    let index = pianeti.length; 
+
+    const MAX_SCALE = 1.5;  //scala massima (pianeta selezionato)
+    const MIN_DISTANCE_PERCENT = 40 //distanza minima tra il pianeta selezionato e quello dopo
+
     pianeti.forEach((pianeta, indice) => {
         const indiceSelezionato = Array.from(pianeti).indexOf(selected_planet);
         const differenza = indice - indiceSelezionato;
         
-        let zoomValue = 1.8 - differenza;
-        let translateValue = 30 - (differenza * 100);
+        let zoomValue = MAX_SCALE - differenza;
+        let translateValue = MIN_DISTANCE_PERCENT - (differenza * 100);
         
-        pianeta.style.transform = `translate(-50%, ${translateValue}%) scale(${zoomValue})`;
-        pianeta.style.opacity = differenza === 0 ? 1 : (differenza === 1 ? 0.5 : 0);
-        pianeta.style.zIndex = index;
+        gsap.to(pianeta, {
+            y: `${translateValue}%`,
+            scale: zoomValue,
+            autoAlpha: differenza === 0 ? 1 : (differenza === 1 ? 0.5 : 0),
+            zIndex: indice,
+            ease: "power2.out",
+            duration: .5,
+        });
         
-        index--;
     });
 }
 
@@ -98,7 +115,7 @@ function updatePlanetDescription() {
     });
 }
 
-let currentIndex;
+let currentIndex = 0;
 function CreateScrollTrigger() {
     if (typeof ScrollTrigger === "undefined") return;
 
@@ -114,7 +131,7 @@ function CreateScrollTrigger() {
 
             if(index !== currentIndex){
                 currentIndex = index;
-                document.querySelector(".selected")?.classList.remove("selected");
+                document.querySelector(".selected")?.classList.remove("selected");  //se è presente un elemento con questa classe viene rimossa
 
                 pianeti[index].classList.add("selected");
 

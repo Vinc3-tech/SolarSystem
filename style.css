@@ -9,8 +9,13 @@ body{
     color: var(--text);
 }
 body::selection{
-    background-color: var(--evidention);
+    background-color: var(--accent-highlight);
     color: var(--primary-background);
+}
+
+.selected {
+    filter: drop-shadow(0 0 30px var(--accent-highlight))
+            drop-shadow(0 0 60px rgba(250, 204, 21, 0.35));
 }
 
 #title{
@@ -22,11 +27,11 @@ body::selection{
 #title h1{
     font-size: clamp(2rem, 3rem, 5vw);
     margin-bottom: 0;
-    color: var(--evidention);
+    color: var(--accent-primary);
 }
 #title span{
     font-weight: 200;
-    color: var(--blu-accent);
+    color: var(--accent-primary);
 }
 
 #contNebulose{
@@ -54,8 +59,7 @@ body::selection{
     left: 50%;
     transform: translate(-50%, -50%);
     transform-origin: center center;
-    opacity: .6;
-    transition: all .5s;
+    pointer-events: none;
 }
 .planet img {
     width: 100%;
@@ -68,14 +72,15 @@ body::selection{
     right: 0;
     transform: translate(0, -50%);
     width: 30%;
-    border: 1px solid var(--star);
-    border-radius: 5px;
+    border-radius: 25px;
     padding: 30px;
     margin: 0 5rem 0 0;
-    background-color: var(--secondary-background);
     display: flex;
     flex-direction: column;
     z-index: 11;
+    border: 1px solid var(--border-soft);
+    background-color: rgba(11, 16, 38, 0.82);
+    backdrop-filter: blur(10px);
 }
 .labelCaratteristiche{
     font-size: clamp(1rem, 1.5rem, 3vw);
@@ -110,6 +115,10 @@ body::selection{
 .voce {
     font-size: 1.2rem;
 }
+.voceActive{
+    text-decoration: underline;
+    text-decoration-color: var(--accent-primary);
+}
 .miniPlanet{
     width: 25px;
     margin: 0 10px;
@@ -119,9 +128,9 @@ body::selection{
     padding: 20px 30px;
     width: 50%;
     margin: 40px 20px 20px 0;
-    border: 1px solid var(--evidention);
+    border: 1px solid var(--accent-highlight);
     background-color: var(--primary-background);
-    color: var(--evidention);
+    color: var(--accent-highlight);
     border-radius: 25px;
     font-size: 1rem;
 }
