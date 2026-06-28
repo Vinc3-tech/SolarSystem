@@ -1,5 +1,7 @@
+//plugin registrati
+gsap.registerPlugin(ScrollTrigger);
+
 // * INSERCTION OBSERVER
-// Create an IntersectionObserver instance
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -41,3 +43,42 @@ function AnimateStatistics() {
         });
     });
 }
+
+// animazione sezione del pianeta
+const SezioniPianeta = document.querySelectorAll(".sezionePianeta");
+const CardSezione = document.querySelectorAll(".cardSVG");
+const contSezioniPianeta = document.querySelector("#sectionPianetaSezionato");
+
+let tl_sezione = gsap.timeline({
+    scrollTrigger: {
+        markers: true,
+        trigger: contSezioniPianeta,
+        pin: contSezioniPianeta,
+        start: "center center",
+        end: "+=1500px",
+        scrub: 1.3,
+    }
+});
+
+let StartSVGPosition = 0;
+let StartCardPosition = 0;
+let FinalCardPosition = 0;
+
+SezioniPianeta.forEach((sezione, i) => {
+
+    tl_sezione.fromTo(sezione, {    //svg
+        y: StartSVGPosition + '%',
+    }, {
+        y: 0,
+    });
+
+    tl_sezione.fromTo(CardSezione[i], { //card
+        y: StartCardPosition + '%',
+    }, {
+        y: FinalCardPosition,
+    });
+
+    FinalCardPosition += 20;
+    StartSVGPosition += 130;
+    StartCardPosition += 120;
+});

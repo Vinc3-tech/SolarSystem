@@ -1,0 +1,122 @@
+/* * -- SITI PIANETI --*/
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* * -- HERO SECTION -- */
+#heroSection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+#sectionDX, #sectionSX{
+    position: relative;
+}
+#sectionSX{
+    width: 40%;
+}
+#sectionDX{
+    width: 60%;
+}
+#imgPianeta{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.6);
+}
+#cardPianeta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    padding: 50px 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--secondary-background);
+    color: var(--text);
+    border: 1px solid var(--border-soft);
+    border-radius: 25px;
+}
+#sectionDX h1{
+    width: fit-content;
+    font-size: 5rem;
+    margin: 0;
+}
+#sectionDX h3{
+    font-size: 2rem;
+    margin: 0;
+}
+#sectionDX p{
+    font-size: 1.5rem;
+}
+
+/* * -- STATISTICS SECTION -- */
+#sectionStatistiche{
+    width: 80%;
+    height: 30%;
+    display: flex;
+    gap: 30px;
+    margin: auto;
+    padding: 30px 0 130px 0;
+}
+.cardStatisticaPianeta{
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--secondary-background);
+    border-radius: 25px;
+    border: 1px solid var(--border-soft);
+}
+.ValueStatistica{
+    font-size: 5rem;
+}
+.labelStatistica{
+    font-size: 2rem;
+}
+
+/* * -- PLANET SECTIONED SECTION -- */
+#sectionPianetaSezionato {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.nucleo{ fill: #ff3b2f; }
+.mantello { fill: #8b5a3c; }
+.crosta { fill: #4b4b4b; }
+#contCardPianetaSVG{
+    position: relative;
+    flex-grow: 1;
+}
+#contPianetaSVG{
+    flex-grow: 1;
+}
+.cardSVG{
+    width: 60%;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(11, 16, 38, 1);
+    border: 1px solid var(--border-soft);
+    border-radius: 25px;
+    padding: 30px;
+}
+.cardSVG h2 {
+    font-size: 4rem;
+    margin: 0 auto;
+}
+.cardSVG span {
+    font-size: 1.3rem;
+}
