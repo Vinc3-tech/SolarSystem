@@ -86,6 +86,46 @@
         </div>
     </section>
 
+    <section id="sectionOrbita">
+        <div class="contOrbitaPianeti">
+            
+            <img src="../img/img-sistemaSolare/sun.png" alt="sun" id="soleOrbita">
+            
+            <svg viewBox="0 0 400 400" class="svgContainer contPianeta">
+                
+                <path id="tracciato-orbita1" d="M 200, 200 m -200, 0 a 200,200 0 1,0 400,0 a 200,200 0 1,0 -400,0" />
+                
+                <image href="../img/img-sistemaSolare/mercury.png" 
+                    id="pianetaOrbita" 
+                    width="26" 
+                    height="26" 
+                    x="-13" 
+                    y="-13">
+                    <animateMotion dur="5s" repeatCount="indefinite" rotate="0">
+                        <mpath href="#tracciato-orbita1" />
+                    </animateMotion>
+                </image>
+            </svg>
+
+            <svg viewBox="0 0 400 400" class="svgContainer contTerra">
+                
+                <path id="tracciato-orbita2" d="M 200, 200 m -200, 0 a 200,200 0 1,0 400,0 a 200,200 0 1,0 -400,0" />
+                
+                <image href="../img/img-sistemaSolare/earth.png" 
+                    id="pianetaOrbita" 
+                    width="26" 
+                    height="26" 
+                    x="-13" 
+                    y="-13">
+                    <animateMotion dur="10s" repeatCount="indefinite" rotate="0">
+                        <mpath href="#tracciato-orbita2" />
+                    </animateMotion>
+                </image>
+            </svg>
+        </div>
+    </section>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
     <script src="../javascript/nebulose.js"></script>

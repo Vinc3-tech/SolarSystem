@@ -51,7 +51,6 @@ const contSezioniPianeta = document.querySelector("#sectionPianetaSezionato");
 
 let tl_sezione = gsap.timeline({
     scrollTrigger: {
-        markers: true,
         trigger: contSezioniPianeta,
         pin: contSezioniPianeta,
         start: "center center",
